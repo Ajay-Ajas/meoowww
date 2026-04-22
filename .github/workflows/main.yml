@@ -1,0 +1,31 @@
+name: CI-CD Pipeline
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-test-package:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+
+      - name: Build Stage
+        run: echo "Build completed successfully"
+
+
+      - name: Test Stage
+        run: test -f index.html
+
+
+      - name: Package Stage
+        run: docker build -t html-ci-cd-app .
+
+
+      - name: Deployment Ready Stage
+        run: docker images
